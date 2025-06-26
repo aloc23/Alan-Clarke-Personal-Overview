@@ -1,135 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Alan Clarke – Personal Overview</title>
+  <title>Alan Clarke – Interactive CV</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      padding: 0;
-      display: flex;
-      background: #f4f4f4;
-      color: #333;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f7f9fc;
+      color: #222;
     }
-    .sidebar {
-      background: #1e3a5f;
-      color: #fff;
-      width: 280px;
+    header {
+      background: #002244;
+      color: white;
       padding: 20px;
-      flex-shrink: 0;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    header p {
+      margin: 5px 0;
+    }
+    .container {
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      flex-wrap: wrap;
+      padding: 20px;
     }
-    .sidebar img {
-      border-radius: 50%;
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      margin-bottom: 15px;
+    .left, .right {
+      padding: 20px;
     }
-    .sidebar h1 {
-      font-size: 1.5em;
-      text-align: center;
+    .left {
+      flex: 1 1 300px;
+      max-width: 300px;
+      background: #e0eafc;
+      border-right: 2px solid #ccc;
     }
-    .sidebar p {
-      text-align: center;
-      font-size: 0.9em;
-      line-height: 1.4;
+    .right {
+      flex: 2 1 600px;
     }
     .section-title {
-      color: #1e3a5f;
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 5px;
+      color: #002244;
+      font-weight: bold;
       margin-top: 20px;
       margin-bottom: 10px;
-      font-weight: bold;
-      font-size: 1.1em;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 5px;
     }
-    .main {
-      flex-grow: 1;
-      padding: 30px;
-      background: #fff;
+    ul.skills {
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    ul.skills li {
+      background: #002244;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 0.85em;
     }
     .experience-entry {
       margin-bottom: 20px;
     }
     .experience-entry h3 {
-      margin: 5px 0;
-      color: #1e3a5f;
+      margin: 0;
+      color: #003366;
     }
     .experience-entry p {
-      margin: 0.3em 0;
+      margin: 5px 0;
+      font-size: 0.95em;
     }
-    ul {
-      padding-left: 20px;
+    a {
+      color: #002244;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
     }
     @media (max-width: 800px) {
-      body {
+      .container {
         flex-direction: column;
       }
-      .sidebar {
-        width: 100%;
-        align-items: flex-start;
-      }
-      .main {
-        padding: 20px;
+      .left {
+        border-right: none;
+        border-bottom: 2px solid #ccc;
+        max-width: none;
       }
     }
   </style>
 </head>
 <body>
-  <div class="sidebar">
-    <img src="https://via.placeholder.com/120" alt="Alan Clarke photo" />
+  <header>
     <h1>Alan Clarke</h1>
-    <p>Commercial Strategist | Leader | Negotiator</p>
-    <p><strong>Contact:</strong><br>📞 +353 87 94 30 328<br>✉️ alan@mayweatherltd.com<br>📍 Meath, Ireland</p>
-    <div>
+    <p>📞 <a href="tel:+353879430328">+353 87 94 30 328</a> | ✉️ <a href="mailto:alan@mayweatherltd.com">alan@mayweatherltd.com</a> | 📍 Meath, Ireland</p>
+    <p>Building Revenue, Relationships & Reputation in Global Partnerships & Strategic Growth</p>
+  </header>
+  <div class="container">
+    <div class="left">
       <div class="section-title">Education</div>
-      <p>Harvard Law School – PON Global (2018)<br>Dublin Institute of Technology – CPD Diploma (2011–2013)<br>Print Media Apprenticeship (2006–2010)</p>
-      <div class="section-title">Competencies</div>
-      <ul>
+      <p><strong>Harvard Law School (2018)</strong><br>PON Global – Negotiation</p>
+      <p><strong>Dublin Institute of Technology</strong><br>CPD Diploma (2011–2013)</p>
+      <p><strong>Print Media Apprenticeship</strong><br>(2006–2010)</p>
+
+      <div class="section-title">Key Skills</div>
+      <ul class="skills">
         <li>Strategic Leadership</li>
-        <li>B2B Sales & Client Mgmt</li>
+        <li>Negotiation</li>
+        <li>B2B Sales</li>
         <li>M&A & Private Equity</li>
         <li>Pricing & Budgeting</li>
-        <li>Event Planning</li>
+        <li>Public Speaking</li>
         <li>Lean Manufacturing</li>
         <li>Project Management</li>
       </ul>
     </div>
-  </div>
-  <div class="main">
-    <h2>Professional Summary</h2>
-    <p>Seasoned commercial leader with over 15 years of experience driving sales, negotiating strategic contracts, and leading high-impact operations and strategies in print media, manufacturing, and private equity. Proven track record of growing revenues from €500k to €9M+, leading international teams, and executing successful M&A strategies.</p>
 
-    <div class="section-title">Professional Experience</div>
+    <div class="right">
+      <div class="section-title">Professional Summary</div>
+      <p>Seasoned commercial leader with 15+ years of experience in sales, strategic contracts, and operations in print media, manufacturing, and private equity. Founder of Mayweather Ltd and inXtremis, with a strong track record in scaling businesses and executing high-profile events across EMEA.</p>
 
-    <div class="experience-entry">
-      <h3>inXTremis – Founder (2022 – Present)</h3>
-      <p>Founded and managed a leadership and motivation event company. Organized events in EMEA with over 2,000 attendees and high-profile speakers like David Goggins.</p>
-    </div>
+      <div class="section-title">Professional Experience</div>
 
-    <div class="experience-entry">
-      <h3>Mayweather Ltd – Founder & CEO (2021 – Present)</h3>
-      <p>Private equity firm focusing on strategic investments and exits. Built solutions aligned with commercial goals.</p>
-    </div>
+      <div class="experience-entry">
+        <h3>inXtremis – Founder</h3>
+        <p><strong>Jun 2022 – Present</strong></p>
+        <p>Organized leadership events with over 2,000 attendees in Dublin, Dubai, and France featuring global speakers like David Goggins and Irish personalities. Strategized marketing efforts for impactful engagement.</p>
+      </div>
 
-    <div class="experience-entry">
-      <h3>Colorman (Ireland) Ltd – Commercial Director (2017 – 2021)</h3>
-      <p>Led pricing, negotiations, and budgeting. Added new clients like Google. Achieved €7M EBITDA on €30M turnover.</p>
-    </div>
+      <div class="experience-entry">
+        <h3>Mayweather Ltd – Founder & CEO</h3>
+        <p><strong>Jun 2021 – Present</strong></p>
+        <p>Launched a private equity firm post-Colorman exit, targeting strategic investments. Expert in scalable business solutions, investor relations, and value creation.</p>
+      </div>
 
-    <div class="experience-entry">
-      <h3>Colorman – Overseas Sales Manager (2012 – 2017)</h3>
-      <p>Expanded global accounts. Increased sales from €500K to €9M. Opened new markets in pharma and tech.</p>
-    </div>
+      <div class="experience-entry">
+        <h3>Colorman (Ireland) Ltd – Commercial Director</h3>
+        <p><strong>Jun 2017 – Jun 2021</strong></p>
+        <p>Drove pricing and client expansion, bringing on Google and reaching €9M in personal sales. Spearheaded €7M EBITDA performance and oversaw a 7× EBITDA multiple sale.</p>
+      </div>
 
-    <div class="experience-entry">
-      <h3>Colorman – Print Media Technician (2006 – 2011)</h3>
-      <p>Completed apprenticeship in print media, specializing in packaging and production processes.</p>
+      <div class="experience-entry">
+        <h3>Colorman (Ireland) Ltd – Overseas Sales Manager</h3>
+        <p><strong>Mar 2012 – Jun 2017</strong></p>
+        <p>Grew annual sales from €500K to €9M by developing pharma, IT, and gifting sectors. Created bespoke client relationships and international strategies.</p>
+      </div>
+
+      <div class="experience-entry">
+        <h3>Colorman (Ireland) Ltd – Print Media Technician</h3>
+        <p><strong>2006 – Jan 2011</strong></p>
+        <p>Completed technical apprenticeship with deep skills in production, manufacturing, and print media technologies.</p>
+      </div>
     </div>
   </div>
 </body>
