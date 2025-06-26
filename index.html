@@ -31,7 +31,7 @@
     }
 
     .menu-toggle {
-      font-size: 1.5em;
+      font-size: 1.8em;
       display: none;
       cursor: pointer;
     }
@@ -39,6 +39,7 @@
     nav {
       display: flex;
       gap: 20px;
+      align-items: center;
     }
 
     nav a {
@@ -140,14 +141,18 @@
       .menu-toggle {
         display: block;
       }
+
       nav {
         display: none;
         flex-direction: column;
+        width: 100%;
         margin-top: 10px;
       }
+
       nav.active {
         display: flex;
       }
+
       .timeline {
         padding-left: 20px;
       }
@@ -177,7 +182,7 @@
       <div class="timeline-icon">🎤</div>
       <div class="timeline-content">
         <h3>inXtremis – Founder <span>Jun 2022 – Present</span></h3>
-        <p>Organized leadership events across EMEA with 2,000+ attendees and global speakers like David Goggins. Led event strategy and marketing.</p>
+        <p>Organized leadership events across EMEA with 2,000+ attendees and global speakers like David Goggins. Led event strategy and high-end marketing.</p>
       </div>
     </div>
 
@@ -185,7 +190,7 @@
       <div class="timeline-icon">🏦</div>
       <div class="timeline-content">
         <h3>Mayweather Ltd – Founder & CEO <span>Jun 2021 – Present</span></h3>
-        <p>Launched a private equity firm post-Colorman exit. Focused on scalable investment growth and commercial value.</p>
+        <p>Founded a private equity firm post-Colorman exit. Focused on strategic investments and scalable value-driven business growth. Delivered long-term commercial value through negotiation and opportunity development.</p>
       </div>
     </div>
 
@@ -193,7 +198,7 @@
       <div class="timeline-icon">📈</div>
       <div class="timeline-content">
         <h3>Colorman – Commercial Director <span>Jun 2017 – Jun 2021</span></h3>
-        <p>Secured clients like Google, drove €9M sales, and managed €7M EBITDA. Oversaw sale at 7× EBITDA multiple.</p>
+        <p>Led pricing strategy, secured Fortune 500 clients including Google, achieved €7M EBITDA, and oversaw a 7× EBITDA multiple sale. Visited clients bi-monthly and optimized production through KPI and Six Sigma tools.</p>
       </div>
     </div>
 
@@ -201,7 +206,7 @@
       <div class="timeline-icon">🌍</div>
       <div class="timeline-content">
         <h3>Colorman – Overseas Sales Manager <span>Mar 2012 – Jun 2017</span></h3>
-        <p>Grew sales from €500K to €9M by opening global pharma/IT markets and building long-term client partnerships.</p>
+        <p>Grew sales from €500K to €9M by opening global accounts in pharma and IT sectors. Launched personalized gift card solutions and drove growth through long-term relationships.</p>
       </div>
     </div>
 
@@ -209,13 +214,16 @@
       <div class="timeline-icon">🖨️</div>
       <div class="timeline-content">
         <h3>Colorman – Print Media Technician <span>2006 – Jan 2011</span></h3>
-        <p>Completed a technical apprenticeship in print and packaging manufacturing.</p>
+        <p>Completed a technical apprenticeship in print and packaging production, gaining deep expertise in press and manufacturing processes.</p>
       </div>
     </div>
   </div>
 
   <script>
-    // Timeline scroll animation
+    function toggleMenu() {
+      document.getElementById('mainNav').classList.toggle('active');
+    }
+
     window.addEventListener('scroll', () => {
       document.querySelectorAll('.timeline-entry').forEach(entry => {
         const rect = entry.getBoundingClientRect();
@@ -225,17 +233,11 @@
       });
     });
 
-    // Expand on click
     document.querySelectorAll('.timeline-content').forEach(box => {
       box.addEventListener('click', () => {
         box.classList.toggle('open');
       });
     });
-
-    // Mobile nav toggle
-    function toggleMenu() {
-      document.getElementById('mainNav').classList.toggle('active');
-    }
   </script>
 </body>
 </html>
