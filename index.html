@@ -76,6 +76,17 @@
       border-left: 3px solid #ccc;
     }
 
+    .connector-line {
+      width: 2px;
+      height: 0;
+      background: #ccc;
+      position: absolute;
+      left: -1px;
+      top: 0;
+      transition: height 1s ease-out;
+      z-index: 0;
+    }
+
     .timeline-entry {
       position: relative;
       margin: 40px 0;
@@ -87,6 +98,10 @@
     .timeline-entry.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    .timeline-entry.visible .connector-line {
+      height: 100%;
     }
 
     .timeline-icon {
@@ -101,6 +116,7 @@
       border-radius: 50%;
       text-align: center;
       line-height: 24px;
+      z-index: 1;
     }
 
     .timeline-content {
@@ -135,6 +151,50 @@
     .timeline-content.open p {
       display: block;
       margin-top: 10px;
+    }
+
+    .skills {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .skills h2 {
+      margin-bottom: 30px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-item {
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      transform: translateY(30px);
+      opacity: 0;
+      transition: all 0.6s ease;
+    }
+
+    .skill-item.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .skill-item i {
+      font-size: 1.6em;
+      color: #002244;
+      margin-bottom: 10px;
+    }
+
+    .skill-item span {
+      display: block;
+      font-weight: 500;
+      color: #003366;
     }
 
     @media (max-width: 768px) {
@@ -179,6 +239,7 @@
 
   <div class="timeline">
     <div class="timeline-entry">
+      <div class="connector-line"></div>
       <div class="timeline-icon">🎤</div>
       <div class="timeline-content">
         <h3>inXtremis – Founder <span>Jun 2022 – Present</span></h3>
@@ -187,6 +248,7 @@
     </div>
 
     <div class="timeline-entry">
+      <div class="connector-line"></div>
       <div class="timeline-icon">🏦</div>
       <div class="timeline-content">
         <h3>Mayweather Ltd – Founder & CEO <span>Jun 2021 – Present</span></h3>
@@ -195,6 +257,7 @@
     </div>
 
     <div class="timeline-entry">
+      <div class="connector-line"></div>
       <div class="timeline-icon">📈</div>
       <div class="timeline-content">
         <h3>Colorman – Commercial Director <span>Jun 2017 – Jun 2021</span></h3>
@@ -203,6 +266,7 @@
     </div>
 
     <div class="timeline-entry">
+      <div class="connector-line"></div>
       <div class="timeline-icon">🌍</div>
       <div class="timeline-content">
         <h3>Colorman – Overseas Sales Manager <span>Mar 2012 – Jun 2017</span></h3>
@@ -211,6 +275,7 @@
     </div>
 
     <div class="timeline-entry">
+      <div class="connector-line"></div>
       <div class="timeline-icon">🖨️</div>
       <div class="timeline-content">
         <h3>Colorman – Print Media Technician <span>2006 – Jan 2011</span></h3>
@@ -219,23 +284,44 @@
     </div>
   </div>
 
+  <section class="skills">
+    <h2>Key Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-item"><i>🎯</i><span>Strategic Leadership</span></div>
+      <div class="skill-item"><i>🤝</i><span>Negotiation</span></div>
+      <div class="skill-item"><i>💼</i><span>B2B Sales</span></div>
+      <div class="skill-item"><i>📊</i><span>M&A & Private Equity</span></div>
+      <div class="skill-item"><i>💰</i><span>Pricing & Budgeting</span></div>
+      <div class="skill-item"><i>🎤</i><span>Public Speaking</span></div>
+      <div class="skill-item"><i>🏭</i><span>Lean Manufacturing</span></div>
+      <div class="skill-item"><i>📋</i><span>Project Management</span></div>
+    </div>
+  </section>
+
   <script>
     function toggleMenu() {
       document.getElementById('mainNav').classList.toggle('active');
     }
 
-    function revealTimelineEntries() {
+    function revealOnScroll() {
       document.querySelectorAll('.timeline-entry').forEach(entry => {
         const rect = entry.getBoundingClientRect();
         if (rect.top < window.innerHeight - 100) {
           entry.classList.add('visible');
         }
       });
+
+      document.querySelectorAll('.skill-item').forEach(skill => {
+        const rect = skill.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 50) {
+          skill.classList.add('visible');
+        }
+      });
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      revealTimelineEntries();
-      window.addEventListener('scroll', revealTimelineEntries);
+      revealOnScroll();
+      window.addEventListener('scroll', revealOnScroll);
 
       document.querySelectorAll('.timeline-content').forEach(box => {
         box.addEventListener('click', () => {
