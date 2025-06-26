@@ -2,83 +2,135 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Alan Clarke | Executive Strategist</title>
-  <link href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alan Clarke – Personal Overview</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      background: #f4f4f4;
+      color: #333;
+    }
+    .sidebar {
+      background: #1e3a5f;
+      color: #fff;
+      width: 280px;
+      padding: 20px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .sidebar img {
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+    .sidebar h1 {
+      font-size: 1.5em;
+      text-align: center;
+    }
+    .sidebar p {
+      text-align: center;
+      font-size: 0.9em;
+      line-height: 1.4;
+    }
+    .section-title {
+      color: #1e3a5f;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 5px;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+    .main {
+      flex-grow: 1;
+      padding: 30px;
+      background: #fff;
+    }
+    .experience-entry {
+      margin-bottom: 20px;
+    }
+    .experience-entry h3 {
+      margin: 5px 0;
+      color: #1e3a5f;
+    }
+    .experience-entry p {
+      margin: 0.3em 0;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    @media (max-width: 800px) {
+      body {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        align-items: flex-start;
+      }
+      .main {
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <nav class="container-fluid">
-    <ul>
-      <li><strong>Alan Clarke</strong></li>
-    </ul>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#contact" role="button">Contact</a></li>
-    </ul>
-  </nav>
-
-  <main class="container">
-    <div class="grid">
-      <section>
-        <hgroup>
-          <h2>Executive Strategist, Leader & Negotiator</h2>
-          <h3>Driving growth through commercial leadership and strategic vision</h3>
-        </hgroup>
-        <p>
-          With over 15 years of experience in commercial leadership, Alan Clarke is a results-driven strategist with a proven track record in sales growth, strategic negotiation, private equity, and global event planning. Founder of Mayweather Ltd and inXtremis, Alan brings together business insight, operational excellence, and high-impact leadership.
-        </p>
-
-        <p><a href="Alan_Clarke_CV_2025.pdf" role="button">Download CV</a></p>
-
-        <figure>
-          <img src="https://images.unsplash.com/photo-1587614382346-ac7f4c27787d" alt="Executive profile" />
-          <figcaption><a href="https://unsplash.com/photos/person-in-suit" target="_blank">Image via Unsplash</a></figcaption>
-        </figure>
-
-        <h3>Executive Competencies</h3>
-        <p>
-          Strategic Leadership • Negotiation • Private Equity • B2B Sales • Project Management • Public Speaking • Lean Manufacturing • M&A • Pricing Strategy
-        </p>
-
-        <h3>Professional Overview</h3>
-        <p>
-          Alan led Colorman Ireland to multi-million euro growth, driving key partnerships and negotiating a company sale at 7x EBITDA. At Mayweather Ltd, he identifies and scales high-potential ventures. Through inXtremis, he orchestrates motivational events across EMEA, including high-profile speakers and luxury venues.
-        </p>
-
-        <h3 id="experience">Career Timeline</h3>
-        <ul>
-          <li><strong>2006–2011:</strong> Print Media Technician at Colorman Ireland – Developed technical expertise in print & manufacturing through a rigorous apprenticeship.</li>
-          <li><strong>2012–2017:</strong> Overseas Sales Manager – Increased international revenue from €500K to €9M+, expanded into pharma, tech, and gifting sectors.</li>
-          <li><strong>2017–2021:</strong> Commercial Director, Colorman – Led pricing, negotiated high-value contracts, and helped sell the company at 7× EBITDA.</li>
-          <li><strong>2021–Present:</strong> Founder & CEO of Mayweather Ltd – Private equity investments focused on scalable, strategic business growth.</li>
-          <li><strong>2022–Present:</strong> Founder of inXtremis – Built and hosted leadership events across EMEA with keynote speakers like David Goggins.</li>
-        </ul>
-      </section>
+  <div class="sidebar">
+    <img src="https://via.placeholder.com/120" alt="Alan Clarke photo" />
+    <h1>Alan Clarke</h1>
+    <p>Commercial Strategist | Leader | Negotiator</p>
+    <p><strong>Contact:</strong><br>📞 +353 87 94 30 328<br>✉️ alan@mayweatherltd.com<br>📍 Meath, Ireland</p>
+    <div>
+      <div class="section-title">Education</div>
+      <p>Harvard Law School – PON Global (2018)<br>Dublin Institute of Technology – CPD Diploma (2011–2013)<br>Print Media Apprenticeship (2006–2010)</p>
+      <div class="section-title">Competencies</div>
+      <ul>
+        <li>Strategic Leadership</li>
+        <li>B2B Sales & Client Mgmt</li>
+        <li>M&A & Private Equity</li>
+        <li>Pricing & Budgeting</li>
+        <li>Event Planning</li>
+        <li>Lean Manufacturing</li>
+        <li>Project Management</li>
+      </ul>
     </div>
-  </main>
+  </div>
+  <div class="main">
+    <h2>Professional Summary</h2>
+    <p>Seasoned commercial leader with over 15 years of experience driving sales, negotiating strategic contracts, and leading high-impact operations and strategies in print media, manufacturing, and private equity. Proven track record of growing revenues from €500k to €9M+, leading international teams, and executing successful M&A strategies.</p>
 
-  <section aria-label="Subscribe example">
-    <div class="container">
-      <article>
-        <hgroup>
-          <h2>Connect With Alan</h2>
-          <h3>Subscribe for updates or reach out to explore opportunities</h3>
-        </hgroup>
-        <form class="grid">
-          <input type="text" id="firstname" name="firstname" placeholder="Your name" aria-label="Name" required />
-          <input type="email" id="email" name="email" placeholder="Your email" aria-label="Email" required />
-          <button type="submit" onclick="event.preventDefault()">Subscribe</button>
-        </form>
-      </article>
+    <div class="section-title">Professional Experience</div>
+
+    <div class="experience-entry">
+      <h3>inXTremis – Founder (2022 – Present)</h3>
+      <p>Founded and managed a leadership and motivation event company. Organized events in EMEA with over 2,000 attendees and high-profile speakers like David Goggins.</p>
     </div>
-  </section>
 
-  <footer class="container">
-    <small>
-      <a href="mailto:alan@mayweatherltd.com">alan@mayweatherltd.com</a> • 
-      <a href="https://www.linkedin.com">LinkedIn</a>
-    </small>
-  </footer>
+    <div class="experience-entry">
+      <h3>Mayweather Ltd – Founder & CEO (2021 – Present)</h3>
+      <p>Private equity firm focusing on strategic investments and exits. Built solutions aligned with commercial goals.</p>
+    </div>
+
+    <div class="experience-entry">
+      <h3>Colorman (Ireland) Ltd – Commercial Director (2017 – 2021)</h3>
+      <p>Led pricing, negotiations, and budgeting. Added new clients like Google. Achieved €7M EBITDA on €30M turnover.</p>
+    </div>
+
+    <div class="experience-entry">
+      <h3>Colorman – Overseas Sales Manager (2012 – 2017)</h3>
+      <p>Expanded global accounts. Increased sales from €500K to €9M. Opened new markets in pharma and tech.</p>
+    </div>
+
+    <div class="experience-entry">
+      <h3>Colorman – Print Media Technician (2006 – 2011)</h3>
+      <p>Completed apprenticeship in print media, specializing in packaging and production processes.</p>
+    </div>
+  </div>
 </body>
 </html>
