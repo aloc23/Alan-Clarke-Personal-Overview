@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Alan Clarke – Interactive CV</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
       margin: 0;
+      font-family: 'Segoe UI', sans-serif;
       background: #f7f9fc;
       color: #222;
     }
     header {
       background: #002244;
-      color: white;
       padding: 20px;
       position: sticky;
       top: 0;
@@ -27,22 +26,29 @@
       align-items: center;
       flex-wrap: wrap;
     }
-    .logo svg {
-      height: 50px;
+
+    /* Animated draw-on logo */
+    svg.logo {
+      height: 60px;
+      opacity: 0;
+      animation: fadeIn 1s ease-out forwards;
     }
     .logo-path {
       fill: none;
       stroke: #ffcc00;
-      stroke-width: 3;
+      stroke-width: 2;
       stroke-dasharray: 2000;
       stroke-dashoffset: 2000;
-      animation: draw 3s forwards ease-out;
+      animation: draw 2.5s ease-out forwards;
+      animation-delay: 0.5s;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
     }
     @keyframes draw {
-      to {
-        stroke-dashoffset: 0;
-      }
+      to { stroke-dashoffset: 0; }
     }
+
     .menu-toggle {
       font-size: 1.8em;
       display: none;
@@ -58,9 +64,6 @@
       text-decoration: none;
       font-weight: 500;
     }
-    nav a:hover {
-      text-decoration: underline;
-    }
     .download-btn {
       background: #ffcc00;
       color: #002244;
@@ -69,42 +72,57 @@
       font-weight: bold;
       text-decoration: none;
     }
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+      nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+      }
+      nav.active {
+        display: flex;
+      }
+    }
+
     h2 {
       text-align: center;
-      margin-top: 40px;
+      margin: 40px 0 20px;
       font-size: 1.8em;
       color: #002244;
     }
+
     .timeline {
       position: relative;
       max-width: 800px;
-      margin: 40px auto;
+      margin: 20px auto;
       padding-left: 30px;
       border-left: 3px solid #ccc;
     }
     .connector-line {
-      width: 2px;
-      height: 0;
-      background: #ccc;
       position: absolute;
       left: -1px;
       top: 0;
+      width: 2px;
+      height: 0;
+      background: #ccc;
       transition: height 1s ease-out;
-      z-index: 0;
     }
     .timeline-entry {
-      position: relative;
       margin: 40px 0;
       opacity: 0;
       transform: translateY(30px);
       transition: all 0.6s ease;
+      position: relative;
     }
     .timeline-entry.visible {
       opacity: 1;
       transform: translateY(0);
     }
     .timeline-entry.visible .connector-line {
-      height: 100%;
+      height: calc(100% - 10px);
     }
     .timeline-icon {
       position: absolute;
@@ -112,21 +130,20 @@
       top: 0;
       background: #002244;
       color: white;
-      font-size: 1.1em;
       width: 24px;
       height: 24px;
       border-radius: 50%;
       text-align: center;
       line-height: 24px;
-      z-index: 1;
+      font-size: 1.1em;
     }
     .timeline-content {
       background: white;
       padding: 15px 20px;
       border-radius: 6px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-      transition: background 0.3s ease, transform 0.3s ease;
       cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
     }
     .timeline-content:hover {
       background: #eef4fb;
@@ -142,43 +159,40 @@
     }
     .timeline-content p {
       margin: 0;
-      font-size: 0.95em;
       display: none;
+      font-size: 0.95em;
+      margin-top: 10px;
     }
     .timeline-content.open p {
       display: block;
-      margin-top: 10px;
     }
+
     .skills {
       max-width: 900px;
       margin: 60px auto;
       padding: 0 20px;
     }
-    .skills h2 {
-      margin-bottom: 30px;
-    }
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
       gap: 20px;
     }
     .skill-item {
-      background: #fff;
+      background: white;
       border-radius: 8px;
       padding: 20px;
       text-align: center;
       box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-      transform: translateY(30px);
       opacity: 0;
+      transform: translateY(30px);
       transition: all 0.6s ease;
     }
     .skill-item.visible {
-      transform: translateY(0);
       opacity: 1;
+      transform: translateY(0);
     }
     .skill-item i {
       font-size: 1.6em;
-      color: #002244;
       margin-bottom: 10px;
     }
     .skill-item span {
@@ -186,35 +200,18 @@
       font-weight: 500;
       color: #003366;
     }
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
-      nav {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        margin-top: 10px;
-      }
-      nav.active {
-        display: flex;
-      }
-      .timeline {
-        padding-left: 20px;
-      }
-    }
   </style>
 </head>
 <body>
+
   <header>
     <div class="header-content">
-      <div class="logo">
-        <svg viewBox="0 0 200 200">
-          <path class="logo-path" d="M 173.625 -74.140625 C 173.738281 -74.265625 ... Z"/>
-        </svg>
-      </div>
+      <!-- Draw-on animated logo -->
+      <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <path class="logo-path" d="M 173.625 -74.140625 C 173.738281 -74.265625 173.859375 -74.296875 173.984375 -74.234375 C 174.109375 -74.171875 174.171875 -74.082031 174.171875 -73.96875 C 174.296875 -73.84375 174.234375 -73.65625 173.984375 -73.40625 C 163.585938 -69.125 153.035156 -65.054688 142.328125 -61.203125 C 131.617188 -57.347656 120.882812 -53.707031 110.125 -50.28125 L 122.046875 12.65625 C 122.296875 14.5 121.5 15.664062 119.65625 16.15625 C 119.289062 16.15625 118.925781 16.125 118.5625 16.0625 C 118.195312 16 117.828125 15.90625 117.453125 15.78125 C 110.847656 11.5 104.242188 7.273438 97.640625 3.109375 C 91.035156 -1.046875 84.367188 -5.140625 77.640625 -9.171875 C 71.640625 -13.085938 64.96875 -17.15625 57.625 -21.375 C 50.28125 -25.601562 43.304688 -29.0625 36.703125 -31.75 C 35.359375 -32.363281 34.992188 -33.28125 35.609375 -34.5 C 35.722656 -35.113281 36.269531 -35.539062 37.25 -35.78125 C 48.144531 -37.625 59.066406 -39.796875 70.015625 -42.296875 C 80.960938 -44.804688 91.820312 -47.59375 102.59375 -50.65625 L 101.3125 -56.890625 C 96.90625 -77.078125 92.679688 -97.265625 88.640625 -117.453125 C 75.671875 -97.515625 62 -77.878906 47.625 -58.546875 C 33.25 -39.210938 17.492188 -21.164062 0.359375 -4.40625 C 0.242188 -4.28125 0.0625 -4.28125 -0.1875 -4.40625 C -0.300781 -4.644531 -0.300781 -4.828125 -0.1875 -4.953125 C 7.882812 -14.867188 15.742188 -24.960938 23.390625 -35.234375 C 31.046875 -45.515625 38.421875 -55.914062 45.515625 -66.4375 C 52.859375 -76.832031 59.984375 -87.414062 66.890625 -98.1875 C 73.804688 -108.957031 80.566406 -119.722656 87.171875 -130.484375 C 87.910156 -131.835938 89.078125 -132.515625 90.671875 -132.515625 C 91.035156 -132.515625 91.398438 -132.453125 91.765625 -132.328125 C 92.128906 -132.203125 92.492188 -132.019531 92.859375 -131.78125 C 93.835938 -131.164062 94.453125 -130.242188 94.703125 -129.015625 C 97.148438 -117.273438 99.503906 -105.5 101.765625 -93.6875 C 104.023438 -81.882812 106.257812 -70.046875 108.46875 -58.171875 L 109.5625 -52.671875 C 120.457031 -55.847656 131.253906 -59.210938 141.953125 -62.765625 C 152.660156 -66.316406 163.21875 -70.109375 173.625 -74.140625 Z"/>
+      </svg>
       <div>
-        <h1 style="margin:0; font-size: 1.4em;">Alan Clarke</h1>
+        <h1 style="margin:0; font-size:1.4em;">Alan Clarke</h1>
         <small>Commercial Strategist | Meath, Ireland</small>
       </div>
       <div class="menu-toggle" onclick="toggleMenu()">☰</div>
@@ -228,11 +225,47 @@
 
   <h2>Professional Experience</h2>
   <div class="timeline">
-    <div class="timeline-entry"><div class="connector-line"></div><div class="timeline-icon">🎤</div><div class="timeline-content"><h3>inXtremis – Founder <span>Jun 2022 – Present</span></h3><p>Organized high-impact leadership events across EMEA with 2,000+ attendees and global speakers like David Goggins.</p></div></div>
-    <div class="timeline-entry"><div class="connector-line"></div><div class="timeline-icon">🏦</div><div class="timeline-content"><h3>Mayweather Ltd – Founder & CEO <span>Jun 2021 – Present</span></h3><p>Founded a private equity firm post-Colorman exit. Focused on strategic investments and scalable value-driven business growth.</p></div></div>
-    <div class="timeline-entry"><div class="connector-line"></div><div class="timeline-icon">📈</div><div class="timeline-content"><h3>Colorman – Commercial Director <span>Jun 2017 – Jun 2021</span></h3><p>Led pricing strategy, secured Fortune 500 clients including Google, achieved €7M EBITDA, and oversaw a 7× EBITDA multiple sale.</p></div></div>
-    <div class="timeline-entry"><div class="connector-line"></div><div class="timeline-icon">🌍</div><div class="timeline-content"><h3>Colorman – Overseas Sales Manager <span>Mar 2012 – Jun 2017</span></h3><p>Grew sales from €500K to €9M by opening global accounts in pharma and IT sectors. Launched personalized gift card solutions.</p></div></div>
-    <div class="timeline-entry"><div class="connector-line"></div><div class="timeline-icon">🖨️</div><div class="timeline-content"><h3>Colorman – Print Media Technician <span>2006 – Jan 2011</span></h3><p>Completed a technical apprenticeship in print and packaging production, gaining deep expertise in press and manufacturing processes.</p></div></div>
+    <!-- Timeline entries -->
+    <div class="timeline-entry">
+      <div class="connector-line"></div>
+      <div class="timeline-icon">🎤</div>
+      <div class="timeline-content">
+        <h3>inXtremis – Founder <span>Jun 2022 – Present</span></h3>
+        <p>Organized high-impact leadership events across EMEA with 2,000+ attendees and global speakers like David Goggins.</p>
+      </div>
+    </div>
+    <div class="timeline-entry">
+      <div class="connector-line"></div>
+      <div class="timeline-icon">🏦</div>
+      <div class="timeline-content">
+        <h3>Mayweather Ltd – Founder &amp; CEO <span>Jun 2021 – Present</span></h3>
+        <p>Founded a private equity firm focused on strategic investments, scalable growth, and long-term business value creation.</p>
+      </div>
+    </div>
+    <div class="timeline-entry">
+      <div class="connector-line"></div>
+      <div class="timeline-icon">📈</div>
+      <div class="timeline-content">
+        <h3>Colorman – Commercial Director <span>Jun 2017 – Jun 2021</span></h3>
+        <p>Led pricing strategy, secured Fortune 500 clients including Google, delivered €7M EBITDA on €30M revenue, and achieved a 7× EBITDA multiple sale.</p>
+      </div>
+    </div>
+    <div class="timeline-entry">
+      <div class="connector-line"></div>
+      <div class="timeline-icon">🌍</div>
+      <div class="timeline-content">
+        <h3>Colorman – Overseas Sales Manager <span>Mar 2012 – Jun 2017</span></h3>
+        <p>Grew sales from €500K to €9M by cultivating pharma & IT accounts and launching personalized gift card solutions.</p>
+      </div>
+    </div>
+    <div class="timeline-entry">
+      <div class="connector-line"></div>
+      <div class="timeline-icon">🖨️</div>
+      <div class="timeline-content">
+        <h3>Colorman – Print Media Technician <span>2006 – Jan 2011</span></h3>
+        <p>Completed apprenticeship in print &amp; packaging production, gaining strong technical expertise in manufacturing processes.</p>
+      </div>
+    </div>
   </div>
 
   <section class="skills">
@@ -242,10 +275,10 @@
       <div class="skill-item"><i>🤝</i><span>Negotiation</span></div>
       <div class="skill-item"><i>💼</i><span>B2B Sales</span></div>
       <div class="skill-item"><i>📊</i><span>M&A & Private Equity</span></div>
-      <div class="skill-item"><i>💰</i><span>Pricing & Budgeting</span></div>
-      <div class="skill-item"><i>🎤</i><span>Public Speaking</span></div>
-      <div class="skill-item"><i>🏭</i><span>Lean Manufacturing</span></div>
-      <div class="skill-item"><i>📋</i><span>Project Management</span></div>
+      <div class="skill-item"><i>💰</i><span>Pricing & Budgeting</span></div>  
+      <div class="skill-item"><i>🎤</i><span>Public Speaking</span></div>  
+      <div class="skill-item"><i>🏭</i><span>Lean Manufacturing</span></div>  
+      <div class="skill-item"><i>📋</i><span>Project Management</span></div>  
     </div>
   </section>
 
@@ -254,24 +287,22 @@
       document.getElementById('mainNav').classList.toggle('active');
     }
     function revealOnScroll() {
-      document.querySelectorAll('.timeline-entry').forEach(entry => {
-        const rect = entry.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-          entry.classList.add('visible');
+      document.querySelectorAll('.timeline-entry').forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+          el.classList.add('visible');
         }
       });
-      document.querySelectorAll('.skill-item').forEach(skill => {
-        const rect = skill.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 50) {
-          skill.classList.add('visible');
+      document.querySelectorAll('.skill-item').forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight - 50) {
+          el.classList.add('visible');
         }
       });
     }
     document.addEventListener('DOMContentLoaded', () => {
       revealOnScroll();
       window.addEventListener('scroll', revealOnScroll);
-      document.querySelectorAll('.timeline-content').forEach(box => {
-        box.addEventListener('click', () => box.classList.toggle('open'));
+      document.querySelectorAll('.timeline-content').forEach(el => {
+        el.addEventListener('click', () => el.classList.toggle('open'));
       });
     });
   </script>
