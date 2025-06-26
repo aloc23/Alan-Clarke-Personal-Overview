@@ -5,119 +5,258 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Alan Clarke – Interactive CV</title>
   <style>
-    body { font-family: 'Segoe UI', sans-serif; margin:0; background:#f7f9fc; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f7f9fc;
+      color: #222;
+    }
     header {
-      background:#002244; color:#fff; padding:20px;
-      position:sticky; top:0; z-index:1000;
+      background: #002244;
+      color: white;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
     .header-content {
-      max-width:1000px; margin:auto;
-      display:flex; justify-content:space-between;
-      align-items:center; flex-wrap:wrap;
+      max-width: 1000px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
     }
     .logo-animated {
-      height:50px;
-      opacity:0;
-      transform:translateY(-10px);
-      animation: logoFade 1s ease-out forwards;
+      height: 50px;
+      opacity: 0;
+      transform: translateY(-10px);
+      animation: logoFade 1.2s ease-out forwards;
     }
     @keyframes logoFade {
-      to { opacity:1; transform:translateY(0); }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-    .menu-toggle { font-size:1.8em; display:none; cursor:pointer; }
-    nav { display:flex; gap:20px; align-items:center; }
-    nav a { color:#fff; text-decoration:none; font-weight:500; }
-    nav a.download { background:#ffcc00; color:#002244; padding:8px 12px; border-radius:4px; }
-    @media (max-width:768px) {
-      .menu-toggle { display:block; }
-      nav { display:none; flex-direction:column; width:100%; margin-top:10px; }
-      nav.active { display:flex; }
+    .menu-toggle {
+      font-size: 1.8em;
+      display: none;
+      cursor: pointer;
     }
-    h2 { text-align:center; margin:40px 0 20px; color:#002244; }
-    .timeline { max-width:800px; margin:auto 20px; position:relative; padding-left:30px; border-left:3px solid #ccc; }
+    nav {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .download-btn {
+      background: #ffcc00;
+      color: #002244;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+      nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+      }
+      nav.active {
+        display: flex;
+      }
+    }
+
+    h2 {
+      text-align: center;
+      margin: 40px 0 20px;
+      font-size: 1.8em;
+      color: #002244;
+    }
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 20px auto;
+      padding-left: 30px;
+      border-left: 3px solid #ccc;
+    }
     .connector-line {
-      position:absolute; left:-1px; top:0;
-      width:2px; height:0;
-      background:#ccc; transition:height 1s ease-out;
+      position: absolute;
+      left: -1px;
+      top: 0;
+      width: 2px;
+      height: 0;
+      background: #ccc;
+      transition: height 1s ease-out;
+      z-index: 0;
     }
     .timeline-entry {
-      margin:40px 0; opacity:0;
-      transform:translateY(30px);
+      position: relative;
+      margin: 40px 0;
+      opacity: 0;
+      transform: translateY(30px);
       transition: all 0.6s ease;
     }
     .timeline-entry.visible {
-      opacity:1; transform:translateY(0);
+      opacity: 1;
+      transform: translateY(0);
     }
     .timeline-entry.visible .connector-line {
       height: calc(100% - 10px);
     }
     .timeline-icon {
-      position:absolute; left:-36px; top:0;
-      background:#002244; color:#fff; width:24px; height:24px;
-      border-radius:50%; text-align:center; line-height:24px; font-size:1.1em;
-      z-index:1;
+      position: absolute;
+      left: -36px;
+      top: 0;
+      background: #002244;
+      color: white;
+      font-size: 1.1em;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 24px;
+      z-index: 1;
     }
     .timeline-content {
-      background:#fff; padding:15px 20px;
-      border-radius:6px; box-shadow:0 4px 8px rgba(0,0,0,0.08);
-      cursor:pointer;
+      background: white;
+      padding: 15px 20px;
+      border-radius: 6px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
       transition: background 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
     }
-    .timeline-content:hover { background:#eef4fb; transform:scale(1.02); }
-    .timeline-content h3 { margin:0 0 10px; font-size:1.1em; color:#003366;
-      display:flex; justify-content:space-between; }
-    .timeline-content p { display:none; margin-top:10px; }
-    .timeline-content.open p { display:block; }
-    .skills { max-width:900px; margin:60px auto; padding:0 20px; }
+    .timeline-content:hover {
+      background: #eef4fb;
+      transform: scale(1.02);
+    }
+    .timeline-content h3 {
+      margin: 0 0 10px;
+      font-size: 1.1em;
+      color: #003366;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .timeline-content p {
+      margin: 0;
+      display: none;
+      font-size: 0.95em;
+      margin-top: 10px;
+    }
+    .timeline-content.open p {
+      display: block;
+    }
+
+    .skills {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
     .skills-grid {
-      display:grid;
-      gap:20px;
-      grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
     }
     .skill-item {
-      background:#fff; border-radius:8px; padding:20px; text-align:center;
-      box-shadow:0 3px 8px rgba(0,0,0,0.1);
-      opacity:0; transform:translateY(30px);
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(30px);
       transition: all 0.6s ease;
     }
-    .skill-item.visible { opacity:1; transform:translateY(0); }
-    .skill-item i { font-size:1.6em; color:#002244; margin-bottom:10px; }
-    .skill-item span { display:block; color:#003366; font-weight:500; }
+    .skill-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .skill-item i {
+      font-size: 1.6em;
+      margin-bottom: 10px;
+    }
+    .skill-item span {
+      display: block;
+      font-weight: 500;
+      color: #003366;
+    }
   </style>
 </head>
 <body>
-
   <header>
     <div class="header-content">
       <div style="display:flex;align-items:center;gap:15px">
-        <!-- Use YOUR logo.svg file here -->
-        <img src="logo.svg" alt="Alan Clarke Logo" class="logo-animated" />
+        <!-- YOUR actual SVG/PNG logo file here -->
+        <img src="logo.svg" alt="Alan Clarke Logo" class="logo-animated"/>
         <div>
-          <h1 style="margin:0;font-size:1.4em;color:#fff">Alan Clarke</h1>
-          <small style="color:#fff">Commercial Strategist | Meath, Ireland</small>
+          <h1 style="margin:0;font-size:1.4em;color:#fff;">Alan Clarke</h1>
+          <small style="color:#fff;">Commercial Strategist | Meath, Ireland</small>
         </div>
       </div>
       <div class="menu-toggle" onclick="toggleMenu()">☰</div>
       <nav id="mainNav">
         <a href="mailto:alan@mayweatherltd.com">Email</a>
         <a href="tel:+353879430328">Call</a>
-        <a href="Alan Clarke_CV.pdf" class="download">📄 Download CV</a>
+        <a href="Alan Clarke_CV.pdf" class="download-btn" download>📄 Download CV</a>
       </nav>
     </div>
   </header>
 
   <h2>Professional Experience</h2>
   <div class="timeline">
-    <!-- Example entry; replicate for each -->
+    <!-- TIMELINE ITEMS -->
     <div class="timeline-entry">
       <div class="connector-line"></div>
       <div class="timeline-icon">🎤</div>
       <div class="timeline-content">
         <h3>inXtremis – Founder <span>Jun 2022 – Present</span></h3>
-        <p>Organized leadership events …</p>
+        <p>Organized high‑impact leadership events across EMEA with 2,000+ attendees and global speakers like David Goggins.</p>
       </div>
     </div>
-    <!-- Add other entries similarly -->
+    <div class="timeline-entry">
+      <div class="connector-line"></div>
+      <div class="timeline-icon">🏦</div>
+      <div class="timeline-content">
+        <h3>Mayweather Ltd – Founder & CEO <span>Jun 2021 – Present</span></h3>
+        <p>Founded private equity firm focused on strategic investments and scalable growth, building long‑term business value.</p>
+      </div>
+    </div>
+    <div class="timeline-entry">
+      <div class="connector-line"></div>
+      <div class="timeline-icon">📈</div>
+      <div class="timeline-content">
+        <h3>Colorman – Commercial Director <span>Jun 2017 – Jun 2021</span></h3>
+        <p>Led pricing strategy, secured Fortune 500 clients, and managed €30M revenue with €7M EBITDA performance.</p>
+      </div>
+    </div>
+    <div class="timeline-entry">
+      <div class="connector-line"></div>
+      <div class="timeline-icon">🌍</div>
+      <div class="timeline-content">
+        <h3>Colorman – Overseas Sales Manager <span>Mar 2012 – Jun 2017</span></h3>
+        <p>Expanded global pharma & IT accounts, growing sales from €500K to €9M through strategic client relationships.</p>
+      </div>
+    </div>
+    <div class="timeline-entry">
+      <div class="connector-line"></div>
+      <div class="timeline-icon">🖨️</div>
+      <div class="timeline-content">
+        <h3>Colorman – Print Media Technician <span>2006 – Jan 2011</span></h3>
+        <p>Completed technical apprenticeship in print and packaging production, gaining deep manufacturing expertise.</p>
+      </div>
+    </div>
   </div>
 
   <section class="skills">
@@ -125,12 +264,16 @@
     <div class="skills-grid">
       <div class="skill-item"><i>🎯</i><span>Strategic Leadership</span></div>
       <div class="skill-item"><i>🤝</i><span>Negotiation</span></div>
-      <!-- Add more skill items -->
+      <div class="skill-item"><i>💼</i><span>B2B Sales</span></div>
+      <div class="skill-item"><i>📊</i><span>M&A & Private Equity</span></div>
+      <div class="skill-item"><i>💰</i><span>Pricing & Budgeting</span></div>
+      <div class="skill-item"><i>🎤</i><span>Public Speaking</span></div>
+      <div class="skill-item"><i>🏭</i><span>Lean Manufacturing</span></div>
+      <div class="skill-item"><i>📋</i><span>Project Management</span></div>
     </div>
   </section>
 
   <script>
-    // Toggle mobile nav
     function toggleMenu() {
       document.getElementById('mainNav').classList.toggle('active');
     }
@@ -152,9 +295,9 @@
       revealOnScroll();
       window.addEventListener('scroll', revealOnScroll);
 
-      document.querySelectorAll('.timeline-content').forEach(el =>
-        el.addEventListener('click', () => el.classList.toggle('open'))
-      );
+      document.querySelectorAll('.timeline-content').forEach(el => {
+        el.addEventListener('click', () => el.classList.toggle('open'));
+      });
     });
   </script>
 </body>
