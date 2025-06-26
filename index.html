@@ -1,111 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Alan Clarke – Interactive CV</title>
   <style>
     body {
-      margin: 0;
       font-family: 'Segoe UI', sans-serif;
+      margin: 0;
       background: #f7f9fc;
       color: #222;
-      animation: fadeIn 1s ease-in-out;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+
     header {
       background: #002244;
       color: white;
-      padding: 20px;
+      padding: 30px 20px;
       text-align: center;
     }
+
     header h1 {
       margin: 0;
-      font-size: 2em;
+      font-size: 2.2em;
     }
-    header p {
-      margin: 5px 0;
-    }
+
     .download-btn {
       display: inline-block;
-      margin-top: 10px;
+      margin-top: 15px;
       background: #ffcc00;
       color: #002244;
-      padding: 10px 15px;
+      padding: 10px 20px;
       border-radius: 5px;
       text-decoration: none;
       font-weight: bold;
     }
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 20px;
-    }
-    .left, .right {
-      padding: 20px;
-      animation: fadeIn 1.2s ease-in-out;
-    }
-    .left {
-      flex: 1 1 300px;
-      max-width: 300px;
-      background: #e0eafc;
-      border-right: 2px solid #ccc;
-    }
-    .right {
-      flex: 2 1 600px;
-    }
-    .section-title {
+
+    h2 {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 1.8em;
       color: #002244;
-      font-weight: bold;
-      margin-top: 20px;
-      margin-bottom: 10px;
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 5px;
     }
-    ul.skills {
-      list-style: none;
-      padding-left: 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
+
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 40px auto;
+      padding-left: 30px;
+      border-left: 3px solid #ccc;
     }
-    ul.skills li {
+
+    .timeline-entry {
+      position: relative;
+      margin: 40px 0;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .timeline-entry.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .timeline-icon {
+      position: absolute;
+      left: -36px;
+      top: 0;
       background: #002244;
       color: white;
-      padding: 5px 10px;
-      border-radius: 4px;
-      font-size: 0.85em;
-      transition: background 0.3s;
+      font-size: 1.1em;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 24px;
     }
-    ul.skills li:hover {
-      background: #ffcc00;
-      color: #002244;
+
+    .timeline-content {
+      background: white;
+      padding: 15px 20px;
+      border-radius: 6px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+      transition: background 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
     }
-    .experience-entry {
-      margin-bottom: 20px;
-      transition: transform 0.3s ease-in-out;
-    }
-    .experience-entry:hover {
+
+    .timeline-content:hover {
+      background: #eef4fb;
       transform: scale(1.02);
     }
-    a {
-      color: #002244;
-      text-decoration: none;
+
+    .timeline-content h3 {
+      margin: 0 0 10px;
+      font-size: 1.1em;
+      color: #003366;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    a:hover {
-      text-decoration: underline;
+
+    .timeline-content p {
+      margin: 0;
+      font-size: 0.95em;
+      display: none;
     }
-    @media (max-width: 800px) {
-      .container {
-        flex-direction: column;
-      }
-      .left {
-        border-right: none;
-        border-bottom: 2px solid #ccc;
-        max-width: none;
+
+    .timeline-content.open p {
+      display: block;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .timeline {
+        padding-left: 20px;
       }
     }
   </style>
@@ -113,66 +121,72 @@
 <body>
   <header>
     <h1>Alan Clarke</h1>
-    <p>📞 <a href="tel:+353879430328">+353 87 94 30 328</a> | ✉️ <a href="mailto:alan@mayweatherltd.com">alan@mayweatherltd.com</a> | 📍 Meath, Ireland</p>
-    <p>Building Revenue, Relationships & Reputation in Global Partnerships & Strategic Growth</p>
-    <a href="Alan%20Clarke_CV.pdf" class="download-btn" download>📄 Download CV</a>
+    <p>📞 <a href="tel:+353879430328" style="color: #fff;">+353 87 94 30 328</a> | ✉️ <a href="mailto:alan@mayweatherltd.com" style="color: #fff;">alan@mayweatherltd.com</a><br>📍 Meath, Ireland</p>
+    <p>Commercial Strategist | Builder of Revenue, Relationships & Reputation</p>
+    <a href="Alan Clarke_CV.pdf" class="download-btn" download>📄 Download CV</a>
   </header>
-  <div class="container">
-    <div class="left">
-      <div class="section-title">Education</div>
-      <p><strong>Harvard Law School (2018)</strong><br>PON Global – Negotiation</p>
-      <p><strong>Dublin Institute of Technology</strong><br>CPD Diploma (2011–2013)</p>
-      <p><strong>Print Media Apprenticeship</strong><br>(2006–2010)</p>
 
-      <div class="section-title">Key Skills</div>
-      <ul class="skills">
-        <li>Strategic Leadership</li>
-        <li>Negotiation</li>
-        <li>B2B Sales</li>
-        <li>M&A & Private Equity</li>
-        <li>Pricing & Budgeting</li>
-        <li>Public Speaking</li>
-        <li>Lean Manufacturing</li>
-        <li>Project Management</li>
-      </ul>
+  <h2>Professional Experience</h2>
+
+  <div class="timeline">
+    <div class="timeline-entry">
+      <div class="timeline-icon">🎤</div>
+      <div class="timeline-content">
+        <h3>inXtremis – Founder <span>Jun 2022 – Present</span></h3>
+        <p>Organized leadership events across EMEA with 2,000+ attendees and global speakers like David Goggins and Irish personalities. Led event strategy and high-end marketing.</p>
+      </div>
     </div>
 
-    <div class="right">
-      <div class="section-title">Professional Summary</div>
-      <p>Seasoned commercial leader with 15+ years of experience in sales, strategic contracts, and operations in print media, manufacturing, and private equity. Founder of Mayweather Ltd and inXtremis, with a strong track record in scaling businesses and executing high-profile events across EMEA.</p>
-
-      <div class="section-title">Professional Experience</div>
-
-      <div class="experience-entry">
-        <h3>inXtremis – Founder</h3>
-        <p><strong>Jun 2022 – Present</strong></p>
-        <p>Organized leadership events with over 2,000 attendees in Dublin, Dubai, and France featuring global speakers like David Goggins and Irish personalities. Strategized marketing efforts for impactful engagement.</p>
+    <div class="timeline-entry">
+      <div class="timeline-icon">🏦</div>
+      <div class="timeline-content">
+        <h3>Mayweather Ltd – Founder & CEO <span>Jun 2021 – Present</span></h3>
+        <p>Founded a private equity firm post-Colorman exit. Focused on strategic investments and scalable value-driven business growth. Delivered long-term commercial value through negotiation and opportunity development.</p>
       </div>
+    </div>
 
-      <div class="experience-entry">
-        <h3>Mayweather Ltd – Founder & CEO</h3>
-        <p><strong>Jun 2021 – Present</strong></p>
-        <p>Launched a private equity firm post-Colorman exit, targeting strategic investments. Expert in scalable business solutions, investor relations, and value creation.</p>
+    <div class="timeline-entry">
+      <div class="timeline-icon">📈</div>
+      <div class="timeline-content">
+        <h3>Colorman – Commercial Director <span>Jun 2017 – Jun 2021</span></h3>
+        <p>Led pricing strategy, secured Fortune 500 clients including Google, achieved €7M EBITDA, and oversaw a 7× EBITDA multiple sale. Visited clients bi-monthly and optimized production through KPI and Six Sigma tools.</p>
       </div>
+    </div>
 
-      <div class="experience-entry">
-        <h3>Colorman (Ireland) Ltd – Commercial Director</h3>
-        <p><strong>Jun 2017 – Jun 2021</strong></p>
-        <p>Drove pricing and client expansion, bringing on Google and reaching €9M in personal sales. Spearheaded €7M EBITDA performance and oversaw a 7× EBITDA multiple sale.</p>
+    <div class="timeline-entry">
+      <div class="timeline-icon">🌍</div>
+      <div class="timeline-content">
+        <h3>Colorman – Overseas Sales Manager <span>Mar 2012 – Jun 2017</span></h3>
+        <p>Grew sales from €500K to €9M by opening global accounts in pharma and IT sectors. Launched personalized gift card solutions and drove growth through long-term relationships.</p>
       </div>
+    </div>
 
-      <div class="experience-entry">
-        <h3>Colorman (Ireland) Ltd – Overseas Sales Manager</h3>
-        <p><strong>Mar 2012 – Jun 2017</strong></p>
-        <p>Grew annual sales from €500K to €9M by developing pharma, IT, and gifting sectors. Created bespoke client relationships and international strategies.</p>
-      </div>
-
-      <div class="experience-entry">
-        <h3>Colorman (Ireland) Ltd – Print Media Technician</h3>
-        <p><strong>2006 – Jan 2011</strong></p>
-        <p>Completed technical apprenticeship with deep skills in production, manufacturing, and print media technologies.</p>
+    <div class="timeline-entry">
+      <div class="timeline-icon">🖨️</div>
+      <div class="timeline-content">
+        <h3>Colorman – Print Media Technician <span>2006 – Jan 2011</span></h3>
+        <p>Completed a technical apprenticeship in print and packaging production, gaining deep expertise in press and manufacturing processes.</p>
       </div>
     </div>
   </div>
+
+  <script>
+    // Scroll animation
+    window.addEventListener('scroll', () => {
+      document.querySelectorAll('.timeline-entry').forEach(entry => {
+        const rect = entry.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          entry.classList.add('visible');
+        }
+      });
+    });
+
+    // Expand/collapse content on click
+    document.querySelectorAll('.timeline-content').forEach(box => {
+      box.addEventListener('click', () => {
+        box.classList.toggle('open');
+      });
+    });
+  </script>
 </body>
 </html>
