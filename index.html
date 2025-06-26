@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Alan Clarke – Interactive CV</title>
   <style>
@@ -15,24 +15,49 @@
     header {
       background: #002244;
       color: white;
-      padding: 30px 20px;
-      text-align: center;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.2em;
+    .header-content {
+      max-width: 1000px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .menu-toggle {
+      font-size: 1.5em;
+      display: none;
+      cursor: pointer;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
     }
 
     .download-btn {
-      display: inline-block;
-      margin-top: 15px;
       background: #ffcc00;
       color: #002244;
-      padding: 10px 20px;
-      border-radius: 5px;
-      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 4px;
       font-weight: bold;
+      text-decoration: none;
     }
 
     h2 {
@@ -112,6 +137,17 @@
     }
 
     @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+      nav {
+        display: none;
+        flex-direction: column;
+        margin-top: 10px;
+      }
+      nav.active {
+        display: flex;
+      }
       .timeline {
         padding-left: 20px;
       }
@@ -120,10 +156,18 @@
 </head>
 <body>
   <header>
-    <h1>Alan Clarke</h1>
-    <p>📞 <a href="tel:+353879430328" style="color: #fff;">+353 87 94 30 328</a> | ✉️ <a href="mailto:alan@mayweatherltd.com" style="color: #fff;">alan@mayweatherltd.com</a><br>📍 Meath, Ireland</p>
-    <p>Commercial Strategist | Builder of Revenue, Relationships & Reputation</p>
-    <a href="Alan Clarke_CV.pdf" class="download-btn" download>📄 Download CV</a>
+    <div class="header-content">
+      <div>
+        <h1 style="margin:0; font-size: 1.4em;">Alan Clarke</h1>
+        <small>Commercial Strategist | Meath, Ireland</small>
+      </div>
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <nav id="mainNav">
+        <a href="mailto:alan@mayweatherltd.com">Email</a>
+        <a href="tel:+353879430328">Call</a>
+        <a href="Alan Clarke_CV.pdf" class="download-btn" download>📄 Download CV</a>
+      </nav>
+    </div>
   </header>
 
   <h2>Professional Experience</h2>
@@ -133,7 +177,7 @@
       <div class="timeline-icon">🎤</div>
       <div class="timeline-content">
         <h3>inXtremis – Founder <span>Jun 2022 – Present</span></h3>
-        <p>Organized leadership events across EMEA with 2,000+ attendees and global speakers like David Goggins and Irish personalities. Led event strategy and high-end marketing.</p>
+        <p>Organized leadership events across EMEA with 2,000+ attendees and global speakers like David Goggins. Led event strategy and marketing.</p>
       </div>
     </div>
 
@@ -141,7 +185,7 @@
       <div class="timeline-icon">🏦</div>
       <div class="timeline-content">
         <h3>Mayweather Ltd – Founder & CEO <span>Jun 2021 – Present</span></h3>
-        <p>Founded a private equity firm post-Colorman exit. Focused on strategic investments and scalable value-driven business growth. Delivered long-term commercial value through negotiation and opportunity development.</p>
+        <p>Launched a private equity firm post-Colorman exit. Focused on scalable investment growth and commercial value.</p>
       </div>
     </div>
 
@@ -149,7 +193,7 @@
       <div class="timeline-icon">📈</div>
       <div class="timeline-content">
         <h3>Colorman – Commercial Director <span>Jun 2017 – Jun 2021</span></h3>
-        <p>Led pricing strategy, secured Fortune 500 clients including Google, achieved €7M EBITDA, and oversaw a 7× EBITDA multiple sale. Visited clients bi-monthly and optimized production through KPI and Six Sigma tools.</p>
+        <p>Secured clients like Google, drove €9M sales, and managed €7M EBITDA. Oversaw sale at 7× EBITDA multiple.</p>
       </div>
     </div>
 
@@ -157,7 +201,7 @@
       <div class="timeline-icon">🌍</div>
       <div class="timeline-content">
         <h3>Colorman – Overseas Sales Manager <span>Mar 2012 – Jun 2017</span></h3>
-        <p>Grew sales from €500K to €9M by opening global accounts in pharma and IT sectors. Launched personalized gift card solutions and drove growth through long-term relationships.</p>
+        <p>Grew sales from €500K to €9M by opening global pharma/IT markets and building long-term client partnerships.</p>
       </div>
     </div>
 
@@ -165,13 +209,13 @@
       <div class="timeline-icon">🖨️</div>
       <div class="timeline-content">
         <h3>Colorman – Print Media Technician <span>2006 – Jan 2011</span></h3>
-        <p>Completed a technical apprenticeship in print and packaging production, gaining deep expertise in press and manufacturing processes.</p>
+        <p>Completed a technical apprenticeship in print and packaging manufacturing.</p>
       </div>
     </div>
   </div>
 
   <script>
-    // Scroll animation
+    // Timeline scroll animation
     window.addEventListener('scroll', () => {
       document.querySelectorAll('.timeline-entry').forEach(entry => {
         const rect = entry.getBoundingClientRect();
@@ -181,12 +225,17 @@
       });
     });
 
-    // Expand/collapse content on click
+    // Expand on click
     document.querySelectorAll('.timeline-content').forEach(box => {
       box.addEventListener('click', () => {
         box.classList.toggle('open');
       });
     });
+
+    // Mobile nav toggle
+    function toggleMenu() {
+      document.getElementById('mainNav').classList.toggle('active');
+    }
   </script>
 </body>
 </html>
