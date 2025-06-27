@@ -4,15 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Alan Clarke – Interactive CV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', 'Segoe UI', sans-serif;
       margin: 0;
       background: #f7f9fc;
       color: #222;
     }
     header {
-      background: #cdab74;
+      background: linear-gradient(to right, #b38a4d, #cdab74);
       color: white;
       padding: 20px;
       position: sticky;
@@ -162,7 +163,8 @@
     .skills {
       max-width: 900px;
       margin: 60px auto;
-      padding: 0 20px;
+      padding: 60px 20px;
+      background: #f0f4f8;
     }
     .skills-grid {
       display: grid;
@@ -177,11 +179,13 @@
       box-shadow: 0 3px 8px rgba(0,0,0,0.1);
       opacity: 0;
       transform: translateY(30px);
-      transition: all 0.6s ease;
     }
     .skill-item.visible {
-      opacity: 1;
-      transform: translateY(0);
+      animation: popIn 0.6s ease forwards;
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.95) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
     }
     .skill-item i {
       font-size: 1.6em;
@@ -192,17 +196,29 @@
       font-weight: 500;
       color: #003366;
     }
+
+    footer {
+      background: #002244;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+    }
+
+    footer a {
+      color: #ffcc00;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="header-content">
       <div style="display:flex;align-items:center;gap:15px">
-        <!-- YOUR actual SVG/PNG logo file here -->
         <img src="logo.svg" alt="Alan Clarke Logo" class="logo-animated"/>
         <div>
-          <h1 style="margin:0;font-size:1.2em;color:#000000;">Alan Clarke</h1>
-          <small style="color:#000000;">Commercial Strategist | Meath, Ireland</small>
+          <h1 style="margin:0;font-size:1.2em;color:#000;">Alan Clarke</h1>
+          <small style="color:#000;">Commercial Strategist | Meath, Ireland</small>
         </div>
       </div>
       <div class="menu-toggle" onclick="toggleMenu()">☰</div>
@@ -216,62 +232,30 @@
 
   <h2>Professional Experience</h2>
   <div class="timeline">
-    <!-- TIMELINE ITEMS -->
-    <div class="timeline-entry">
-      <div class="connector-line"></div>
-      <div class="timeline-icon">🎤</div>
-      <div class="timeline-content">
-        <h3>inXtremis – Founder <span>Jun 2022 – Present</span></h3>
-        <p>Organized high‑impact leadership events across EMEA with 2,000+ attendees and global speakers like David Goggins.</p>
-      </div>
-    </div>
-    <div class="timeline-entry">
-      <div class="connector-line"></div>
-      <div class="timeline-icon">🏦</div>
-      <div class="timeline-content">
-        <h3>Mayweather Ltd – Founder & CEO <span>Jun 2021 – Present</span></h3>
-        <p>Founded private equity firm focused on strategic investments and scalable growth, building long‑term business value.</p>
-      </div>
-    </div>
-    <div class="timeline-entry">
-      <div class="connector-line"></div>
-      <div class="timeline-icon">📈</div>
-      <div class="timeline-content">
-        <h3>Colorman – Commercial Director <span>Jun 2017 – Jun 2021</span></h3>
-        <p>Led pricing strategy, secured Fortune 500 clients, and managed €30M revenue with €7M EBITDA performance.</p>
-      </div>
-    </div>
-    <div class="timeline-entry">
-      <div class="connector-line"></div>
-      <div class="timeline-icon">🌍</div>
-      <div class="timeline-content">
-        <h3>Colorman – Overseas Sales Manager <span>Mar 2012 – Jun 2017</span></h3>
-        <p>Expanded global pharma & IT accounts, growing sales from €500K to €9M through strategic client relationships.</p>
-      </div>
-    </div>
-    <div class="timeline-entry">
-      <div class="connector-line"></div>
-      <div class="timeline-icon">🖨️</div>
-      <div class="timeline-content">
-        <h3>Colorman – Print Media Technician <span>2006 – Jan 2011</span></h3>
-        <p>Completed technical apprenticeship in print and packaging production, gaining deep manufacturing expertise.</p>
-      </div>
-    </div>
+    <div class="timeline-entry"><div class="connector-line"></div><div class="timeline-icon">🎤</div><div class="timeline-content"><h3>inXtremis – Founder <span>Jun 2022 – Present</span></h3><p>Organized high‑impact leadership events across EMEA with 2,000+ attendees and global speakers like David Goggins.</p></div></div>
+    <div class="timeline-entry"><div class="connector-line"></div><div class="timeline-icon">🏦</div><div class="timeline-content"><h3>Mayweather Ltd – Founder & CEO <span>Jun 2021 – Present</span></h3><p>Founded private equity firm focused on strategic investments and scalable growth, building long‑term business value.</p></div></div>
+    <div class="timeline-entry"><div class="connector-line"></div><div class="timeline-icon">📈</div><div class="timeline-content"><h3>Colorman – Commercial Director <span>Jun 2017 – Jun 2021</span></h3><p>Led pricing strategy, secured Fortune 500 clients, and managed €30M revenue with €7M EBITDA performance.</p></div></div>
+    <div class="timeline-entry"><div class="connector-line"></div><div class="timeline-icon">🌍</div><div class="timeline-content"><h3>Colorman – Overseas Sales Manager <span>Mar 2012 – Jun 2017</span></h3><p>Expanded global pharma & IT accounts, growing sales from €500K to €9M through strategic client relationships.</p></div></div>
+    <div class="timeline-entry"><div class="connector-line"></div><div class="timeline-icon">🖨️</div><div class="timeline-content"><h3>Colorman – Print Media Technician <span>2006 – Jan 2011</span></h3><p>Completed technical apprenticeship in print and packaging production, gaining deep manufacturing expertise.</p></div></div>
   </div>
 
   <section class="skills">
     <h2>Key Skills</h2>
     <div class="skills-grid">
-      <div class="skill-item"><i>🎯</i><span>Strategic Leadership</span></div>
-      <div class="skill-item"><i>🤝</i><span>Negotiation</span></div>
-      <div class="skill-item"><i>💼</i><span>B2B Sales</span></div>
-      <div class="skill-item"><i>📊</i><span>M&A & Private Equity</span></div>
-      <div class="skill-item"><i>💰</i><span>Pricing & Budgeting</span></div>
-      <div class="skill-item"><i>🎤</i><span>Public Speaking</span></div>
-      <div class="skill-item"><i>🏭</i><span>Lean Manufacturing</span></div>
-      <div class="skill-item"><i>📋</i><span>Project Management</span></div>
+      <div class="skill-item" title="Leading companies through strategic pivots."><i>🎯</i><span>Strategic Leadership</span></div>
+      <div class="skill-item" title="Building win-win outcomes."><i>🤝</i><span>Negotiation</span></div>
+      <div class="skill-item" title="Corporate sales strategies."><i>💼</i><span>B2B Sales</span></div>
+      <div class="skill-item" title="Investment & value-building."><i>📊</i><span>M&A & Private Equity</span></div>
+      <div class="skill-item" title="Efficient cost control."><i>💰</i><span>Pricing & Budgeting</span></div>
+      <div class="skill-item" title="Public events and keynotes."><i>🎤</i><span>Public Speaking</span></div>
+      <div class="skill-item" title="Manufacturing process optimization."><i>🏭</i><span>Lean Manufacturing</span></div>
+      <div class="skill-item" title="End-to-end project coordination."><i>📋</i><span>Project Management</span></div>
     </div>
   </section>
+
+  <footer>
+    © 2025 Alan Clarke | <a href="mailto:alan@mayweatherltd.com">Email Me</a>
+  </footer>
 
   <script>
     function toggleMenu() {
@@ -294,7 +278,6 @@
     document.addEventListener('DOMContentLoaded', () => {
       revealOnScroll();
       window.addEventListener('scroll', revealOnScroll);
-
       document.querySelectorAll('.timeline-content').forEach(el => {
         el.addEventListener('click', () => el.classList.toggle('open'));
       });
